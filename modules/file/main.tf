@@ -3,17 +3,23 @@ locals {
 
   // Isolate variables used for different workspaces
   // using map
-  filename = {
-    default = "${var.filename}-dev.txt"
-    dev = "${var.filename}-dev.txt"
-    prod = "${var.filename}-prod.txt"
+  context = {
+    default = {
+      name = "${var.filename}-dev.txt"
+    }
+    dev = {
+      name = "${var.filename}-dev.txt"
+    }
+    prod = {
+      name = "${var.filename}-prod.txt"
+    }
   }
 
-  name = "${lookup(local.filename, local.env)}"
+  context_variables = "${local.context[local.env]}"
 }
 
 // Creates a new local file with the given filename and content
 resource "local_file" "test" {
   content     = "${local.env}"
-  filename = "${path.module}/${local.name}"
+  filename = "${path.module}/${lookup(local.context_variables, "name")}"
 }
