@@ -1,7 +1,7 @@
 output "filename" {
-	value = "${module.localfile.filename}"
+  value = "${module.localfile.filename}"
 }
 
 output "content" {
-	value = "${module.localfile.content}"
+  value = "${module.localfile.content}"
 }
