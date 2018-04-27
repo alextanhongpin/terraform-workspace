@@ -14,6 +14,6 @@ locals {
 
 // Creates a new local file with the given filename and content
 resource "local_file" "test" {
-  content     = "${local.env}"
-  filename = "${path.module}/${local.name}"
+	content     = "${local.env}"
+	filename = "${path.module}/${local.name}"
 }
